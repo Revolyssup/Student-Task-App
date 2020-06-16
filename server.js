@@ -9,6 +9,7 @@ const port= process.env.PORT || 5000;
 
 app.use(express.json());
 
+app.use(express.static(path.join(__dirname, 'Frontend' ,'build')));
 const uri=process.env.ATLAS_URI;
 db.connect(uri,{useCreateIndex:true,useNewUrlParser:true,useUnifiedTopology: true });
 
@@ -24,8 +25,9 @@ const tasksRouter=require('./Routes/tasks');
 app.use('/api/students',studentsRouter);
 app.use('/api/tasks',tasksRouter);
 
-
-app.use(express.static(path.join(__dirname, 'Frontend/build')));
+app.get('/', function(req, res) {
+    res.sendFile(path.join(__dirname,'Frontend', 'build', 'index.html'));
+  });
 
 app.listen(port,()=>{
     console.log(`Server running on ${port}`)
