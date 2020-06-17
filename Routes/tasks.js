@@ -7,7 +7,6 @@ router.route('/').get((req,res)=>{
         .catch(err=>res.status(400).json(err));
 })
 
-
 router.route('/add').post((req,res)=>{
     const name= req.body.name;
     const description=req.body.description;

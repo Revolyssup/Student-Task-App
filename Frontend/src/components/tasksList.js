@@ -37,7 +37,7 @@ const Task=(props)=>(
         }
 
         deleteTask=(id)=>{
-                axios.delete('/api/tasks'+id).
+                axios.delete('/api/tasks/'+ id).
                     then(()=>console.log(id+" deleted"))
                 this.setState({
                     tasks: this.state.tasks.filter((el)=> el._id!=id)
